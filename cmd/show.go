@@ -35,7 +35,7 @@ func init() {
 
 var showCmd = &cobra.Command{
 	Use:   "show [<env>|-f <file-or-dir>]",
-	Short: "Show expanded resource definitions",
+	Short: "Render resources and print to stdout",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		flags := cmd.Flags()
 		var err error
@@ -54,4 +54,9 @@ var showCmd = &cobra.Command{
 
 		return c.Run(objs, cmd.OutOrStdout())
 	},
+	Long: `Render resources and print them to stdout. This subcommand accepts
+YAML, JSON, or Jsonnet files, as well as ksonnet applications. In the case of
+YAML and JSON, the rendering step is a no-op, and they are printed out
+verbatim. In the case of Jsonnet (and, hence, ksonnet applications), the render
+step involves expanding the file and printing out the results.`,
 }
