@@ -103,7 +103,9 @@ var RootCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		log.SetLevel(logLevel(verbosity))
+
+		// The `+1` below sets the default verbosity to "info".
+		log.SetLevel(logLevel(verbosity + 1))
 
 		return nil
 	},
